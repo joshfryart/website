@@ -88,7 +88,10 @@
       return sec;
     }
     const rows = el('div', { class: 'rows' });
-    sec.append(rows);
+    const sum = el('summary', { class: 'month' }, [el('span', { text: 'See the photos' })]);
+    sum.insertAdjacentHTML('beforeend', '<svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    const box = el('details', { class: 'month-box' }, [sum, rows]);
+    sec.append(box);
     let shown = 0;
     const more = el('div', { class: 'more' });
     const grow = () => {
@@ -102,7 +105,7 @@
       }
     };
     grow();
-    sec.append(more);
+    box.append(more);
     return sec;
   };
 
