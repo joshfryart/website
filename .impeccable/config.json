@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-30T12:13:31.574Z",
+        "reason": "assistant triage, not user-confirmed: static scan ignores css/garden.css; .plot has clamp padding, display faces are intentionally tight, real h1 is 3.6-9rem vs 17px body"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-30T12:13:31.583Z",
+        "reason": "assistant triage, not user-confirmed: static scan ignores css/garden.css; .plot has clamp padding, display faces are intentionally tight, real h1 is 3.6-9rem vs 17px body"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-30T12:13:31.593Z",
+        "reason": "assistant triage, not user-confirmed: static scan ignores css/garden.css; .plot has clamp padding, display faces are intentionally tight, real h1 is 3.6-9rem vs 17px body"
+      }
+    ]
+  }
+}

@@ -46,7 +46,7 @@ a{color:inherit}
 .snail{position:absolute;bottom:0;width:2.2rem;height:auto;left:calc((100% - 2.2rem) * var(--p,0));transform:translateY(-.1rem)}
 
 /* ---------- hero ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(1.5rem,4vw,4rem);align-items:center;min-height:calc(100svh - var(--bar-h));padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,3.5rem);background:radial-gradient(60rem 30rem at 85% 20%,var(--bed-3),transparent 70%),var(--bed)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(1.5rem,4vw,4rem);align-items:center;min-height:calc(100svh - var(--bar-h));padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,3.5rem);background:var(--bed)}
 h1{margin:0;font:400 clamp(3.6rem,11vw,9rem)/.88 var(--head);letter-spacing:-.02em;text-wrap:balance}
 h1 span{display:block;color:var(--bloom);margin-left:.35em;padding-bottom:.12em}
 .lede{max-width:34ch;margin:1.5rem 0 1.75rem;font-size:clamp(1.1rem,1.8vw,1.35rem);color:var(--text-soft)}
