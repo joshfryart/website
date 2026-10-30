@@ -43,25 +43,41 @@
   });
 
   /* ---------- builders ---------- */
-  const picButton = (items, i, alt) => {
-    const b = el('button', { class: 'pic', type: 'button', 'aria-label': 'Open photo ' + (i + 1) }, [img(items[i], alt)]);
+  const picButton = (items, i, alt, it) => {
+    const kids = [img(items[i], alt)];
+    if (it && it.d) kids.push(el('span', { class: 'when', text: dateLabel(it.d) }));
+    const b = el('button', { class: 'pic', type: 'button', 'aria-label': 'Open photo ' + (i + 1) + (it && it.d ? ', ' + dateLabel(it.d) : '') }, kids);
     b.onclick = () => open(items, i, b);
     return b;
   };
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const dateLabel = d => { const [, m, day] = d.split('-'); return MONTHS[+m - 1].slice(0, 3) + ' ' + +day; };
   const bed = (cfg, items) => {
-    const rows = el('div', { class: 'rows' });
-    const sec = el('section', { class: 'bed y' + cfg.y, id: 'y' + cfg.y, 'aria-labelledby': 'h' + cfg.y }, [
-      el('header', { class: 'bed-head' }, [
-        el('h2', { id: 'h' + cfg.y, text: cfg.y }),
-        el('p', { html: `${cfg.blurb} <b>${items.length} photos.</b>` })
-      ]),
-      rows
+    const head = el('header', { class: 'bed-head' }, [
+      el('h2', { id: 'h' + cfg.y, text: cfg.y }),
+      el('p', { html: `${cfg.blurb} <b>${items.length} photos.</b>` })
     ]);
+    const sec = el('section', { class: 'bed y' + cfg.y, id: 'y' + cfg.y, 'aria-labelledby': 'h' + cfg.y }, [head]);
+    if (items[0] && items[0].d) {
+      // dated year: one grid per month, newest first
+      const all = [...items].sort((x, y) => y.d.localeCompare(x.d));
+      const byMonth = new Map();
+      all.forEach(it => { const k = it.d.slice(0, 7); byMonth.set(k, [...(byMonth.get(k) || []), it]); });
+      [...byMonth.keys()].sort().reverse().forEach(k => {
+        const month = byMonth.get(k);
+        const rows = el('div', { class: 'rows' });
+        month.forEach(it => rows.append(picButton(all, all.indexOf(it), it.cap.split('|')[1], it)));
+        sec.append(el('h3', { class: 'month', text: MONTHS[+k.slice(5) - 1] + ' ' + k.slice(0, 4) }, [el('small', { text: month.length + ' photos' })]), rows);
+      });
+      return sec;
+    }
+    const rows = el('div', { class: 'rows' });
+    sec.append(rows);
     let shown = 0;
     const more = el('div', { class: 'more' });
     const grow = () => {
       const end = Math.min(shown + PAGE, items.length);
-      for (; shown < end; shown++) rows.append(picButton(items, shown, items[shown].cap.split('|')[1]));
+      for (; shown < end; shown++) rows.append(picButton(items, shown, items[shown].cap.split('|')[1], items[shown]));
       more.replaceChildren();
       if (shown < items.length) {
         const b = el('button', { type: 'button', text: 'Water the bed for more' });
@@ -78,7 +94,7 @@
   Promise.all([fetch('gallery.json').then(r => r.json()), fetch('gallery-art.json').then(r => r.json())]).then(([g, a]) => {
     const byYear = y => g.filter(x => x.y === y);
     const beds = $('#beds');
-    YEARS.forEach(c => beds.append(bed(c, c.y === '2026' ? byYear(c.y).reverse() : byYear(c.y))));
+    YEARS.forEach(c => beds.append(bed(c, byYear(c.y))));
 
     // hero posy: five favourites, spread across the years
     const pick = [['2025', 62], ['2024', 78], ['2026', 248], ['2024', 96], ['2025', 36]];
