@@ -148,6 +148,13 @@ h1 span{display:block;color:var(--bloom);margin-left:.35em;padding-bottom:.12em}
 
 /* ---------- small screens ---------- */
 @media (max-width:52rem){
+  .rows{grid-template-columns:repeat(3,1fr);gap:.4rem}
+  .pic:hover{transform:none}
+  .pic:nth-child(n){border-radius:.9rem}
+  .month{margin:2rem 0 .7rem}
+  .art-grid{columns:2;column-gap:.5rem}
+  .art-grid li{margin-bottom:.5rem}
+  .when{font-size:.7rem;padding:.2rem .5rem;left:.3rem;bottom:.3rem}
   .hero{grid-template-columns:1fr;min-height:0}
   .posy{aspect-ratio:1/1}
   .bar{gap:.75rem}
