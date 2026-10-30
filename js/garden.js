@@ -63,12 +63,28 @@
       const all = [...items].sort((x, y) => y.d.localeCompare(x.d));
       const byMonth = new Map();
       all.forEach(it => { const k = it.d.slice(0, 7); byMonth.set(k, [...(byMonth.get(k) || []), it]); });
-      [...byMonth.keys()].sort().reverse().forEach(k => {
+      const boxes = [];
+      [...byMonth.keys()].sort().reverse().forEach((k, n) => {
         const month = byMonth.get(k);
         const rows = el('div', { class: 'rows' });
         month.forEach(it => rows.append(picButton(all, all.indexOf(it), it.cap.split('|')[1], it)));
-        sec.append(el('h3', { class: 'month', text: MONTHS[+k.slice(5) - 1] + ' ' + k.slice(0, 4) }, [el('small', { text: month.length + ' photos' })]), rows);
+        const sum = el('summary', { class: 'month' }, [
+          el('span', { text: MONTHS[+k.slice(5) - 1] + ' ' + k.slice(0, 4) }),
+          el('small', { text: month.length + ' photos' })
+        ]);
+        sum.insertAdjacentHTML('beforeend', '<svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        const box = el('details', { class: 'month-box' }, [sum, rows]);
+        if (n === 0) box.open = true;
+        boxes.push(box);
       });
+      const all_ = el('button', { type: 'button', class: 'fold', text: 'Open every month' });
+      all_.onclick = () => {
+        const opening = boxes.some(b => !b.open);
+        boxes.forEach(b => (b.open = opening));
+        all_.textContent = opening ? 'Close every month' : 'Open every month';
+      };
+      head.append(all_);
+      sec.append(...boxes);
       return sec;
     }
     const rows = el('div', { class: 'rows' });
