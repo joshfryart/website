@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Josh Fry Art</title>
+<meta name="description" content="Macro garden photographs, digital stained glass and small digital art by Josh Fry.">
+<meta name="theme-color" content="#0f2a1c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='4' fill='%23ffc928'/%3E%3Cg fill='%23ff4fa8'%3E%3Ccircle cx='16' cy='7' r='5'/%3E%3Ccircle cx='16' cy='25' r='5'/%3E%3Ccircle cx='7' cy='16' r='5'/%3E%3Ccircle cx='25' cy='16' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='4' fill='%23ffc928'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/garden.css">
+</head>
+<body>
+<a class="skip" href="#beds">Skip to the photos</a>
+
+<header class="bar" id="top">
+  <a class="mark" href="#top" aria-label="Josh Fry Art, back to top">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#ff4fa8"><circle cx="16" cy="7" r="5"/><circle cx="16" cy="25" r="5"/><circle cx="7" cy="16" r="5"/><circle cx="25" cy="16" r="5"/></g><circle cx="16" cy="16" r="4.5" fill="#ffc928"/></svg>
+    <span>Josh Fry Art</span>
+  </a>
+  <nav class="stakes" aria-label="Sections">
+    <a class="stake s26" href="#y2026">2026</a>
+    <a class="stake s25" href="#y2025">2025</a>
+    <a class="stake s24" href="#y2024">2024</a>
+    <a class="stake s23" href="#y2023">2023</a>
+    <a class="stake sglass" href="#glass">Glass</a>
+    <a class="stake sart" href="#art">Digital</a>
+    <a class="stake sbsky" href="https://bsky.app/profile/joshfry.art" rel="noopener">Bluesky<span class="sr"> (opens in new tab)</span></a>
+  </nav>
+  <div class="trail" aria-hidden="true">
+    <svg class="snail" viewBox="0 0 48 32"><path d="M2 28h38c4 0 6-3 6-6" fill="none" stroke="#c9e8a6" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="14" r="11" fill="#ffc928"/><path d="M24 14m-2 0a2 2 0 1 1 4 0a5 5 0 1 1-10 0a8 8 0 1 1 16 0" fill="none" stroke="#c7570b" stroke-width="2.2" stroke-linecap="round"/><path d="M40 24c0-5 2-9 2-13" fill="none" stroke="#c9e8a6" stroke-width="3" stroke-linecap="round"/><circle cx="42" cy="10" r="2" fill="#c9e8a6"/></svg>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hello">
+    <div class="hero-copy">
+      <h1 id="hello">Josh <span>Fry</span></h1>
+      <p class="lede">Close-up garden photos, digital stained glass and small odd art. Mostly bees, moths and things that are blooming.</p>
+      <p class="hero-links">
+        <a class="btn btn-bloom" href="#y2026">Wander the garden</a>
+        <a class="btn btn-ghost" href="#glass">See the stained glass</a>
+      </p>
+    </div>
+    <ul class="posy" id="posy" aria-label="A few favourites"></ul>
+  </section>
+
+  <div id="beds" class="beds"></div>
+
+  <section class="plot plot-glass" id="glass" aria-labelledby="glass-h">
+    <header class="plot-head">
+      <h2 id="glass-h"><span>Digital</span> Stained Glass</h2>
+      <p>An exploration of colour and stained-glass feelings, helpful for personal introspection. Stare as long as you wish. These are pleasing to make; I hope they are pleasing to you. <em>Joshua</em></p>
+    </header>
+    <ol class="glass-grid" id="glass-grid"></ol>
+  </section>
+
+  <section class="plot plot-art" id="art" aria-labelledby="art-h">
+    <header class="plot-head">
+      <h2 id="art-h">Digital <span>Art</span></h2>
+      <p>Colour experiments, landscapes and a few characters. The Puzzle Gang lives at the bottom.</p>
+    </header>
+    <ul class="art-grid" id="art-grid"></ul>
+    <h3 class="gang-h">The Puzzle Gang</h3>
+    <ul class="gang-grid" id="gang-grid"></ul>
+  </section>
+</main>
+
+<footer class="foot">
+  <p class="foot-line">Planted by Josh Fry. New photos land on Bluesky first.</p>
+  <a class="btn btn-bloom" href="https://bsky.app/profile/joshfry.art" rel="noopener">Follow on Bluesky</a>
+  <a class="btn btn-ghost" href="#top">Back to the top</a>
+</footer>
+
+<dialog id="lb" class="lb" aria-label="Photo viewer">
+  <button class="lb-x" id="lb-x" aria-label="Close">&times;</button>
+  <button class="lb-n lb-prev" id="lb-prev" aria-label="Previous photo">&lsaquo;</button>
+  <figure>
+    <div class="lb-stage" id="lb-stage"></div>
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+  <button class="lb-n lb-next" id="lb-next" aria-label="Next photo">&rsaquo;</button>
+</dialog>
+
+<script src="js/garden.js" defer></script>
+</body>
+</html>
